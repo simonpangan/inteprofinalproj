@@ -1,0 +1,144 @@
+﻿@model InteproFinalProj.Models.StudentsModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="wrapper flex-grow-1">
+    <nav class="navbar navbar-light bg-primary justify-content-between">
+        <a class="navbar-brand text-white">Final Proj</a>
+
+        <a href="~/Admin/Logout" class="btn my-2 my-sm-0 text-white">
+            <span> <i class="fas fa-sign-out-alt"></i> </span>Logout
+        </a>
+
+    </nav>
+
+    <br/>
+
+    <div class="container">
+
+        <div class="card  mx-auto mt-4" style="max-width: 500px;">
+            <h5 class="card-header info-color text-white text-center py-4"
+                style="background-color: #33b5e5">
+                <strong>Add Student</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body mt-4 px-lg-5 pt-0">
+                @using (Html.BeginForm())
+
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            Student Number
+
+                            @Html.EditorFor(model => model.studentNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.studentNumber, "", new { @class = "text-danger" })
+                            @Html.Raw(ViewBag.Error)
+                        </div>
+
+                        <div class="form-group">
+                            First Name:
+                            @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        Middle Name:
+                        @Html.EditorFor(model => model.middleName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.middleName, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        Last Name:
+                        @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        Age:
+                        @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+
+                    <div class="form-group">
+                        Sex:
+                        @Html.RadioButtonFor(model => model.sex, "Male")   Male
+                        @Html.RadioButtonFor(model => model.sex, "Female") Female
+                        <br />
+                        @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        Address:
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        Telephone Number:
+                        @Html.EditorFor(model => model.telephoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.telephoneNumber, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        Cellphone Number:
+                        @Html.EditorFor(model => model.cellphoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cellphoneNumber, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        Course:
+                        @Html.RadioButtonFor(model => model.course, "BS-IS") BS-IS
+
+                        @Html.RadioButtonFor(model => model.course, "BS-CA")BS-CA
+                        <br />
+                        @Html.ValidationMessageFor(model => model.course, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                    <div class="form-row justify-content-between">
+                        <div class="col-3">
+                            <!-- First name -->
+                            <a href="~/Admin/Index" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">
+                                <span>
+                                    <i class="fas fa-long-arrow-alt-left"></i>
+                                </span>
+                                Back
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                                    type="submit">
+                                Add
+                                <span>
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

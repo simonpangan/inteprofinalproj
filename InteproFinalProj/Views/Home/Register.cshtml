@@ -1,0 +1,96 @@
+﻿@model InteproFinalProj.Models.AccountModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+
+    <div class="card  mx-auto mt-4" style="max-width: 500px;">
+        <h5 class="card-header info-color text-white text-center py-4"
+            style="background-color: #33b5e5">
+            <strong>Sign up</strong>
+        </h5>
+
+        <!--Card content-->
+        <div class="card-body mt-4 px-lg-5 pt-0">
+            @using (Html.BeginForm())
+
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+
+                    First Name:
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+               
+
+                </div>
+
+                <div class="form-group">
+                    Last Name:
+
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    Email:
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    @Html.Raw(ViewBag.Error)
+                </div>
+
+                <div class="form-group">
+                    Password:
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    Confirm Password:
+                    @Html.PasswordFor(model => model.confirmPassword, new { @class = "form-control", placeholder = "Password" })
+
+                    @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-row justify-content-between">
+                    <div class="col-3">
+                        <!-- First name -->
+                        <a href="~/Home/Login"class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                               >
+                            <span>
+                                <i class="fas fa-long-arrow-alt-left"></i>
+                            </span>
+                            Back
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                                type="submit">
+                            Add
+                            <span>
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+
+  
+
+
+
+</div>

@@ -1,0 +1,212 @@
+﻿@model IEnumerable<InteproFinalProj.Models.StudentsModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+
+  
+    <link href="~/Content/fontawesome-free-5.15.1-web/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <style>
+        .container {
+            margin-top: 10px;
+        }
+
+        footer {
+            border: 1px solid black;
+            margin-top: 1%;
+        }
+
+
+        .dash-box p {
+            margin: 0 0;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="wrapper flex-grow-1">
+        <nav class="navbar navbar-light bg-primary justify-content-between">
+            <a class="navbar-brand text-white">Final Proj</a>
+            
+                <a href="~/Admin/Logout" class="btn my-2 my-sm-0 text-white"  >
+                    <span> <i class="fas fa-sign-out-alt"></i> </span>Logout
+                </a>
+           
+        </nav>
+
+
+
+        <main>
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-3 d-flex d-inline border border-primary rounded">
+                        <div class="mr-auto dash-box">
+                            <strong><p>Total Student Accounts:</p></strong>
+                            <center><span>   @Html.Raw(ViewBag.All) </span></center>
+                        </div>
+                        <div class="dash-box-icon pt-2"><i class="fas fa-user-tie"></i></div>
+                    </div>
+                    <div class=" col-3  d-flex d-inline border border-primary rounded">
+                        <div class="mr-auto dash-box">
+                            <strong><p>Total BS-IS Students:</p></strong>
+                            <center><span>     @Html.Raw(ViewBag.IS) </span></center>
+                        </div>
+                        <div class="dash-box-icon pt-2"><i class="fas fa-user-cog"></i></div>
+                    </div>
+                    <div class=" col-3   d-flex d-inline border border-primary rounded">
+                        <div class="mr-auto dash-box">
+                            <strong><p>Total BS-CA Students:</p></strong>
+                            <center><span>     @Html.Raw(ViewBag.CA) </span></center>
+                        </div>
+                        <div class="dash-box-icon pt-2">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <a href="~/Admin/Add" type="button" class="btn btn-outline-primary float-right m-2">
+                    Add New <span><i class="fas fa-user-plus"></i></span>
+                </a>
+
+                <table id="table_id" class="display">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.studentNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.firstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.middleName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.lastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sex)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.telephoneNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cellphoneNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.course)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.studentNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.firstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.middleName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sex)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.telephoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cellphoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.course)
+                                </td>
+                                <td style="text-align: center;">
+                                    <a style="padding: 3px;" href="~/Admin/Edit?id=@item.studentID"
+                                       class="btn  btn-sm">
+                                        <span style="color:#FFC107;"><i class="fa fa-edit"></i></span>
+                                    </a>
+
+                                    <form style="display: inline;" action="~/Admin/Delete" method="post">
+                                        <input type="hidden" name="ID" value="@item.studentID" />
+                                        <button style="padding: 3px;" type="submit" onclick='return confirm("Are you sure you want to delete?")' ;
+                                                class="btn  btn-sm">
+
+                                            <span style="color: red;"><i class="fa fa-trash"></i></span>
+                                        </button>
+                                    </form>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+</table>
+
+            </div>
+        </main>
+
+    </div>
+
+    <footer class="page-footer font-small blue bg-primary">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3"
+             style="color: rgba(255, 255, 255, 0.6)">
+            Final Project By:
+            <a href="https://www.facebook.com/allekster"
+               target="_blank"
+               class="text-white">Allek Esteban</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        charset="utf8"
+        src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+      
+        $('#table_id').DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+    });
+</script>
+</html>
