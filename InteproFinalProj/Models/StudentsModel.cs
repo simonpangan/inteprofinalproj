@@ -107,6 +107,7 @@ namespace InteproFinalProj.Models
             dl.AddParam("@middleName", input.middleName);
             dl.AddParam("@lastName", input.lastName);
             dl.AddParam("@age", input.age);
+
             dl.AddParam("@sex", input.sex);
             dl.AddParam("@address", input.address);
             dl.AddParam("@telephoneNumber", input.telephoneNumber);
@@ -122,12 +123,11 @@ namespace InteproFinalProj.Models
             List<StudentsModel> list =
                 new List<StudentsModel>();
             dl.Open();
-            dl.SetSql("SELECT * FROM StudentTable");
+            dl.SetSql("SELECT * FROM StudentTable INNER JOIN SexTable ON StudentTable.sexID = SexTable.sexID; ");
             SqlDataReader dr = dl.GetReader();
             while (dr.Read() == true)
             {
-            
-             
+          
                 StudentsModel ac = new StudentsModel();
                 ac.studentID = (int)dr[0];
                 ac.studentNumber = (long)dr[1];
@@ -135,7 +135,7 @@ namespace InteproFinalProj.Models
                 ac.middleName = dr[3].ToString();
                 ac.lastName = dr[4].ToString();
                 ac.age = (int)dr[5];
-                ac.sex = dr[6].ToString();
+                ac.sex = dr[12].ToString();
                 ac.address = dr[7].ToString();
                 ac.telephoneNumber = dr[8].ToString();
                 ac.cellphoneNumber = dr[9].ToString();
@@ -179,7 +179,7 @@ namespace InteproFinalProj.Models
             dl.SetSql("UPDATE StudentTable SET studentNumber=@studentNumber," +
                 " firstName=@firstName, middleName=@middleName," +
                 "lastName=@lastName ,age=@age " +
-                ",sex=@sex ,address=@address " +
+                ",sexID=@sex ,address=@address " +
                 ",telephoneNumber=@telephoneNumber " +
                 ",cellphoneNumber=@cellphoneNumber, course=@course " +
                 "WHERE studentID=@studentID");
@@ -200,11 +200,11 @@ namespace InteproFinalProj.Models
             dl.Close();
         }   
 
-        public static void Delete(int i)
+        public static void Delete(int id)
         {
             dl.Open();
             dl.SetSql("DELETE StudentTable WHERE studentID = @id");
-            dl.AddParam("@id", i);
+            dl.AddParam("@id", id);
             dl.Execute();
             dl.Close();
         }

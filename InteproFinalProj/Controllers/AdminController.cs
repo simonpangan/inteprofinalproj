@@ -49,6 +49,7 @@ namespace InteproFinalProj.Controllers
         public ActionResult Edit(int? id)
         {
             if (Session["UserID"] == null) return RedirectToAction("Login", "Home");
+
             if (id == null) return RedirectToAction("Index", "Admin");
             else if(StudentsModel.Get1Employee(id) == null) return RedirectToAction("Index", "Admin");
 
